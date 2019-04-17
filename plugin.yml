@@ -1,6 +1,6 @@
 name: GlobalMute
 version: "1.0.0"
 author: Shelly7w7
-main: shelly7w7\GlobalMute\Loader
+main: shelly7w7\globalmute\Loader
 description: "Mute the global chat! Meaning no one will be able to chat."
 api: [3.0.0]
