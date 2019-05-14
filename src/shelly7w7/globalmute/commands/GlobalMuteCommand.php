@@ -33,12 +33,12 @@ class GlobalMuteCommand extends PluginCommand{
 
 		switch($args[0]){
 			case "on":
-				$this->getPlugin()->getServer()->broadcastMessage($this->plugin->config->get("turned-on"));
+				$this->getPlugin()->getServer()->broadcastMessage($this->getPlugin()->getConfig()->get("turned-on"));
 				$this->getPlugin()->getConfig()->set("global-mute", true);
 				$this->getPlugin()->getConfig()->save();
 				break;
 			case "off":
-				$this->getPlugin()->getServer()->broadcastMessage($this->plugin->config->get("turned-off"));
+				$this->getPlugin()->getServer()->broadcastMessage($this->getPlugin()->getConfig()->get("turned-off"));
 				$this->getPlugin()->getConfig()->set("global-mute", false);
 				$this->getPlugin()->getConfig()->save();
 				break;
