@@ -4,3 +4,13 @@ author: Shelly7w7
 main: shelly7w7\globalmute\Loader
 description: "Mute the global chat! Meaning no one will be able to chat."
 api: [3.0.0]
+
+permissions:
+  global:
+    default: false
+    children:
+      global.mute:
+        default: op
+        children:
+          global.mute.chat:
+            default: op
