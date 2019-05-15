@@ -20,6 +20,7 @@ class GlobalMuteCommand extends PluginCommand{
 		$this->setAliases($this->getPlugin()->getConfig()->get("aliases", []));
 		$this->setDescription("Enable/Disable Global Mute.");
 		$this->setPermission("global.mute");
+		$this->setUsage("/globalmute <on/off>");
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args){
