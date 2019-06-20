@@ -14,7 +14,7 @@ class MuteListener implements Listener{
 		$this->plugin = $plugin;
 	}
 
-	public function onChat(PLayerChatEvent $event)
+	public function onChat(PlayerChatEvent $event)
 	{
 		if($this->plugin->config->get("global-mute") == true and !($event->getplayer()->hasPermission("global.mute.chat"))){
 			$event->setCancelled();
