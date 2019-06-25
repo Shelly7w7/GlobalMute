@@ -1,19 +1,45 @@
 <?php
 
-namespace shelly7w7\globalmute; 
+declare(strict_types=1);
+
+namespace shelly7w7\globalmute;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\Config;
-use shelly7w7\globalmute\commands\GlobalMuteCommand;
 
-class Loader extends PluginBase implements Listener {
+class Loader extends PluginBase implements Listener{
 
-	public function onEnable(){
-    @mkdir($this->getDataFolder());
-    $this->saveResource('config.yml');
-    $this->config = new Config($this->getDataFolder().'config.yml', Config::YAML);
-    $this->getServer()->getCommandMap()->register("globalmute", new GlobalMuteCommand("globalmute", $this));
-    $this->getServer()->getPluginManager()->registerEvents(new MuteListener($this), $this);
-     }
-  }
+	/** @var Config $config */
+	public $config;
+	/** @var self $instance */
+	protected static $instance;
+
+	public function onEnable() : void{
+		self::$instance = $this;
+		@mkdir($this->getDataFolder());
+		$this->saveResource('config.yml');
+		$this->config = new Config($this->getDataFolder() . 'config.yml', Config::YAML);
+		$this->getServer()->getCommandMap()->register("globalmute", new GlobalMuteCommand());
+		$this->getServer()->getPluginManager()->registerEvents(new MuteListener(), $this);
+	}
+
+	public static function getInstance() : self{
+		return self::$instance;
+	}
+
+	public function toggleGlobalMute(bool $toggle) : void{
+		switch($toggle){
+			case true:
+				$this->getServer()->broadcastMessage(Loader::getInstance()->config->get("turned-on"));
+				$this->config->set("global-mute", true);
+				$this->config->save();
+				break;
+			case false:
+				$this->getServer()->broadcastMessage(Loader::getInstance()->config->get("turned-off"));
+				$this->config->set("global-mute", false);
+				$this->config->save();
+				break;
+		}
+	}
+}
