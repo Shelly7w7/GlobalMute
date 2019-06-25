@@ -31,12 +31,12 @@ class Loader extends PluginBase implements Listener{
 	public function toggleGlobalMute(bool $toggle) : void{
 		switch($toggle){
 			case true:
-				$this->getServer()->broadcastMessage(Loader::getInstance()->config->get("turned-on"));
+				$this->getServer()->broadcastMessage($this->config->get("turned-on"));
 				$this->config->set("global-mute", true);
 				$this->config->save();
 				break;
 			case false:
-				$this->getServer()->broadcastMessage(Loader::getInstance()->config->get("turned-off"));
+				$this->getServer()->broadcastMessage($this->config->get("turned-off"));
 				$this->config->set("global-mute", false);
 				$this->config->save();
 				break;
