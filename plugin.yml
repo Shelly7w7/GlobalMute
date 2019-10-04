@@ -1,6 +1,14 @@
 name: GlobalMute
-version: "1.0.0"
+description: Mute the global chat! Meaning no one will be able to chat.
+
+main: shelly7w7\globalmute\GlobalMute
+version: 1.0.1
+api: 3.0.0
+
 author: Shelly7w7
-main: shelly7w7\globalmute\Loader
-description: "Mute the global chat! Meaning no one will be able to chat."
-api: [3.0.0]
+
+commands:
+  globalmute:
+    aliases: [gm]
+    description: Enable/Disable Global Mute.
+    permission: global.mute
